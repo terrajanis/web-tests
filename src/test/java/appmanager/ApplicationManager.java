@@ -29,17 +29,16 @@ public class ApplicationManager {
         properties = new Properties();
     }
 
-    public void init()  throws IOException {
+    public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-        if("".equals(properties.getProperty("selenium.server"))) {
+        if ("".equals(properties.getProperty("selenium.server"))) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
             } else if (browser.equals(BrowserType.CHROME)) {
-               ChromeOptions chromeOptions = new ChromeOptions();
-               //chromeOptions.setHeadless(true);
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setHeadless(true);
                 chromeOptions.addArguments("window-size=1920,1060");
-                /*wd.manage().window().maximize();*/
                 wd = new ChromeDriver(chromeOptions);
             } else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
@@ -47,7 +46,7 @@ public class ApplicationManager {
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
-            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
+            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
         wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -70,7 +69,7 @@ public class ApplicationManager {
     }
 
     public byte[] takeScreenshot() {
-        return  ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
     }
 
     public RegistrationHelper getRegistration() {

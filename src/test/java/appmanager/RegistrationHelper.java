@@ -22,7 +22,6 @@ public class RegistrationHelper extends HelperBase {
     }
 
     public void fillRegistrationInfo(UserInfo userInfo) throws InterruptedException {
-        Thread.sleep(5000);
         wd.switchTo().frame("modal-register");
         type(By.id("usrlog"), userInfo.getUsername());
         type(By.id("usrpass"), userInfo.getPassword());
@@ -31,7 +30,6 @@ public class RegistrationHelper extends HelperBase {
     }
 
     public void fillRegistrationInfo(String username, String email, String password) throws InterruptedException {
-        Thread.sleep(5000);
         wd.switchTo().frame("modal-register");
         type(By.id("usrpass"), password);
         type(By.id("usrlog"), username);
@@ -52,7 +50,6 @@ public class RegistrationHelper extends HelperBase {
 
     public void skipPhone() throws InterruptedException {
         click(By.cssSelector("a.skip"));
-        Thread.sleep(5000);
     }
 
     public String getLoggedInUser() {
