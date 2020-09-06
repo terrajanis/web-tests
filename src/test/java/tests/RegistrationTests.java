@@ -14,7 +14,7 @@ public class RegistrationTests extends TestBase {
 
 
     @Test(dataProvider = "generateInfo", dataProviderClass = UserDataProvider.class)
-    public void register(UserInfo userInfo) throws InterruptedException {
+    public void register(UserInfo userInfo) {
         app.getRegistration().createNewAccount(userInfo);
         app.getRegistration().skipPhone();
         Assert.assertEquals(userInfo.getUsername(), app.getRegistration().getLoggedInUser());
@@ -23,7 +23,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test (dependsOnMethods = {"register"})
-    public void registerWithTheSameUser() throws InterruptedException, IOException {
+    public void registerWithTheSameUser() throws IOException {
         SoftAssert softAssert = new SoftAssert();
         UserInfo userInfo = app.getRegistration().readUserFromJson(new File("src/test/resources/user.json"));
         app.getRegistration().createNewAccount(userInfo);
@@ -34,7 +34,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithEmptyUsername() throws InterruptedException {
+    public void registerWithEmptyUsername() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("", "email@gmail.com","qwerty");
@@ -45,7 +45,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithEmptyEmail() throws InterruptedException {
+    public void registerWithEmptyEmail() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("awesomeUsername3400", "","qwerty");
@@ -56,7 +56,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithEmptyPassword() throws InterruptedException {
+    public void registerWithEmptyPassword() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("awesomeUsername3400", "email@gmail.com","");
@@ -67,7 +67,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithIncorrectEmail() throws InterruptedException {
+    public void registerWithIncorrectEmail() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("awesomeUsername3400", "email","qwerty");
@@ -78,7 +78,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithShortUsername() throws InterruptedException {
+    public void registerWithShortUsername() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("us", "email@gmail.com","qwerty");
@@ -89,7 +89,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registerWithShortPassword() throws InterruptedException {
+    public void registerWithShortPassword() {
         SoftAssert softAssert = new SoftAssert();
         app.getRegistration().openRegistrationForm();
         app.getRegistration().fillRegistrationInfo("awesomeUsername3400", "email@gmail.com","qwer");

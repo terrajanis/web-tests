@@ -14,15 +14,13 @@ public class AuthorizationHelper extends HelperBase {
         click(By.className("i-lock"));
     }
 
-    public void fillRegistrationInfo(UserInfo userInfo) throws InterruptedException {
-        Thread.sleep(5000);
+    public void fillRegistrationInfo(UserInfo userInfo) {
         type(By.id("usrlog2"), userInfo.getUsername());
         type(By.id("usrpass2"), userInfo.getPassword());
         click(By.name("save"));
     }
 
-    public void fillRegistrationInfo(String username, String password) throws InterruptedException {
-        Thread.sleep(5000);
+    public void fillRegistrationInfo(String username, String password) {
         type(By.id("usrlog2"),username);
         type(By.id("usrpass2"), password);
         click(By.name("save"));
@@ -32,7 +30,7 @@ public class AuthorizationHelper extends HelperBase {
         click(By.cssSelector("form > button.btn-plain"));
     }
 
-    public void login(UserInfo userInfo) throws InterruptedException {
+    public void login(UserInfo userInfo)  {
         openAuthorizationForm();
         fillRegistrationInfo(userInfo);
         submitLogIn();

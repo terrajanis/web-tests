@@ -21,7 +21,7 @@ public class RegistrationHelper extends HelperBase {
         click(By.className("i-new-user"));
     }
 
-    public void fillRegistrationInfo(UserInfo userInfo) throws InterruptedException {
+    public void fillRegistrationInfo(UserInfo userInfo)  {
         wd.switchTo().frame("modal-register");
         type(By.id("usrlog"), userInfo.getUsername());
         type(By.id("usrpass"), userInfo.getPassword());
@@ -29,7 +29,7 @@ public class RegistrationHelper extends HelperBase {
         click(By.name("user_confirm"));
     }
 
-    public void fillRegistrationInfo(String username, String email, String password) throws InterruptedException {
+    public void fillRegistrationInfo(String username, String email, String password) {
         wd.switchTo().frame("modal-register");
         type(By.id("usrpass"), password);
         type(By.id("usrlog"), username);
@@ -41,14 +41,13 @@ public class RegistrationHelper extends HelperBase {
         click(By.cssSelector("button.btn.btn-primary.btn-lg"));
     }
 
-
-    public void createNewAccount(UserInfo userInfo) throws InterruptedException {
+    public void createNewAccount(UserInfo userInfo)  {
         openRegistrationForm();
         fillRegistrationInfo(userInfo);
         submit();
     }
 
-    public void skipPhone() throws InterruptedException {
+    public void skipPhone()  {
         click(By.cssSelector("a.skip"));
     }
 

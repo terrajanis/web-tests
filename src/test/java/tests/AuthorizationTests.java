@@ -12,14 +12,14 @@ import java.io.IOException;
 public class AuthorizationTests extends TestBase{
 
     @Test
-    public void loginValidUser () throws IOException, InterruptedException {
+    public void loginValidUser () throws IOException {
         UserInfo userInfo = app.getRegistration().readUserFromJson(new File("src/test/resources/user.json"));
         app.getAuthorization().login(userInfo);
         Assert.assertEquals(userInfo.getUsername(), app.getRegistration().getLoggedInUser());
     }
 
     @Test
-    public void loginInvalidUser () throws IOException, InterruptedException {
+    public void loginInvalidUser () {
         SoftAssert softAssert = new SoftAssert();
         app.getAuthorization().openAuthorizationForm();
         app.getAuthorization().fillRegistrationInfo("InvalidUser", "password");
@@ -31,7 +31,7 @@ public class AuthorizationTests extends TestBase{
     }
 
     @Test
-    public void loginWithEmptyCredentials () throws IOException, InterruptedException {
+    public void loginWithEmptyCredentials () {
         SoftAssert softAssert = new SoftAssert();
         app.getAuthorization().openAuthorizationForm();
         app.getAuthorization().fillRegistrationInfo("", "");
@@ -43,7 +43,7 @@ public class AuthorizationTests extends TestBase{
     }
 
     @Test
-    public void loginWithoutUsername () throws IOException, InterruptedException {
+    public void loginWithoutUsername () {
         SoftAssert softAssert = new SoftAssert();
         app.getAuthorization().openAuthorizationForm();
         app.getAuthorization().fillRegistrationInfo("", "password");
@@ -55,7 +55,7 @@ public class AuthorizationTests extends TestBase{
     }
 
     @Test
-    public void loginWithoutPassword () throws IOException, InterruptedException {
+    public void loginWithoutPassword () {
         SoftAssert softAssert = new SoftAssert();
         app.getAuthorization().openAuthorizationForm();
         app.getAuthorization().fillRegistrationInfo("username", "");
