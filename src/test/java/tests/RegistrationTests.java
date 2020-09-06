@@ -15,7 +15,6 @@ public class RegistrationTests extends TestBase {
 
     @Test(dataProvider = "generateInfo", dataProviderClass = UserDataProvider.class)
     public void register(UserInfo userInfo) throws InterruptedException {
-
         app.getRegistration().createNewAccount(userInfo);
         app.getRegistration().skipPhone();
         Assert.assertEquals(userInfo.getUsername(), app.getRegistration().getLoggedInUser());

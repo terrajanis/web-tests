@@ -72,10 +72,10 @@ public class RegistrationHelper extends HelperBase {
         }
         reader.close();
 
-        Gson gson2 = new Gson();
-        UserInfo user2 = gson2.fromJson(userFromJson, UserInfo.class);
+        Gson gson = new Gson();
+        UserInfo user = gson.fromJson(userFromJson, UserInfo.class);
 
-        return user2;
+        return user;
     }
 
 
